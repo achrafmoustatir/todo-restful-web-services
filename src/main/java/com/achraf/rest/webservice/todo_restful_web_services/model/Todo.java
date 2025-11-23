@@ -1,11 +1,18 @@
 package com.achraf.rest.webservice.todo_restful_web_services.model;
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
+
 
 public class Todo {
 
     private Long id;
     private String username;
+
+    @NotBlank(message = "Title is required")
     private String title;
     private String description;
     private boolean status;

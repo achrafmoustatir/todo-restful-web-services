@@ -2,6 +2,7 @@ package com.achraf.rest.webservice.todo_restful_web_services.controller;
 
 import com.achraf.rest.webservice.todo_restful_web_services.model.Todo;
 import com.achraf.rest.webservice.todo_restful_web_services.service.TodoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Todo> updateTodo(@PathVariable String username,@PathVariable Long id, @RequestBody Todo todo){
+    public ResponseEntity<Todo> updateTodo(@PathVariable String username,@PathVariable Long id, @Valid @RequestBody Todo todo){
         todo.setUsername(username);
         todo.setId(id);
         Todo updated = todoService.save(todo);
@@ -44,7 +45,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<Todo>reateTodo(@PathVariable String username,@RequestBody Todo todo){
+    public ResponseEntity<Todo> createTodo(@PathVariable String username, @Valid @RequestBody Todo todo){
         todo.setUsername(username);
         Todo created = todoService.save(todo);
         return ResponseEntity.ok(created);

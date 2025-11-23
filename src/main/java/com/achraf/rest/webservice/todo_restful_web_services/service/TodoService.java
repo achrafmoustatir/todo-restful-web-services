@@ -31,6 +31,7 @@ public class TodoService {
     public List<Todo> findAllTodos(String username) {
         return todos.stream()
                 .filter(todo -> todo.getUsername().equalsIgnoreCase(username))
+                .sorted(Comparator.comparing(Todo::getId))
                 .toList();
     }
 
